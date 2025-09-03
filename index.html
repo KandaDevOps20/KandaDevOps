@@ -1,0 +1,354 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Kanda DevOps — Student Tech Solutions</title>
+<meta name="description" content="Kanda DevOps - hardware repair, OS install, typing/printing, game setup. Book via WhatsApp or Email. Hostel H, IT Department." />
+
+<style>
+  :root{
+    --bg1: #0f172a;
+    --bg2: #081129;
+    --card: rgba(255,255,255,0.06);
+    --accent1: #06b6d4;
+    --accent2: #8b5cf6;
+    --glass: rgba(255,255,255,0.04);
+    --text: #e6eef8;
+    --muted: rgba(230,238,248,0.6);
+    --success: #10b981;
+    --danger: #ef4444;
+    --radius: 14px;
+  }
+  body.light {
+    --bg1: #f6f9fc;
+    --bg2: #e9eef6;
+    --card: rgba(0,0,0,0.04);
+    --glass: rgba(0,0,0,0.03);
+    --text: #0b1220;
+    --muted: rgba(11,18,32,0.6);
+  }
+
+  *{box-sizing:border-box}
+  html,body{height:100%}
+  body{
+    margin:0;
+    min-height:100%;
+    font-family:Inter,ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial;
+    background: radial-gradient(1200px 600px at 10% 10%, rgba(11,30,70,0.6), transparent),
+                linear-gradient(180deg,var(--bg1),var(--bg2));
+    color:var(--text);
+    -webkit-font-smoothing:antialiased;
+    -moz-osx-font-smoothing:grayscale;
+    transition: background 0.35s, color 0.35s;
+    padding-bottom:60px;
+  }
+
+  /* container */
+  .wrap{max-width:1100px;margin:48px auto;padding:36px}
+
+  /* header */
+  header{
+    display:flex;align-items:center;justify-content:space-between;gap:16px;
+    margin-bottom:32px;
+  }
+  .brand{
+    display:flex;gap:12px;align-items:center;
+  }
+  .logo{
+    width:64px;height:64px;border-radius:16px;
+    background:linear-gradient(135deg,var(--accent1),var(--accent2));
+    display:flex;align-items:center;justify-content:center;font-weight:800;color:#051025;
+    box-shadow:0 6px 20px rgba(8,12,30,0.6);
+  }
+  .brand h1{margin:0;font-size:1.25rem;letter-spacing:-0.2px}
+  .brand p{margin:0;font-size:0.85rem;color:var(--muted)}
+
+  /* top CTA */
+  .top-actions{display:flex;gap:10px;align-items:center}
+  .wa-btn, .contact-btn {
+    display:inline-flex;align-items:center;gap:10px;padding:10px 14px;border-radius:12px;
+    cursor:pointer;border:0;background:linear-gradient(90deg,var(--accent1),var(--accent2));color:#071026;font-weight:700;
+    box-shadow:0 6px 18px rgba(11,20,40,0.45);text-decoration:none;
+  }
+  .secondary{background:transparent;border:1px solid rgba(255,255,255,0.06);color:var(--text);padding:8px 12px;border-radius:10px}
+
+  /* hero */
+  .hero{
+    background:linear-gradient(180deg, rgba(255,255,255,0.02), transparent);
+    border-radius:24px;
+    padding:36px;
+    display:grid;
+    grid-template-columns:1fr 400px;
+    gap:36px;
+    align-items:center;
+    box-shadow:0 12px 50px rgba(2,6,23,0.6);
+    margin-bottom:40px;
+  }
+  .hero h2{margin:0;font-size:1.9rem}
+  .hero p{margin:10px 0;color:var(--muted)}
+  .hero .promo{
+    background:linear-gradient(90deg,var(--accent2),var(--accent1));
+    padding:14px 18px;
+    border-radius:14px;color:#041025;font-weight:800;display:inline-block;text-align:center
+  }
+
+  /* services grid */
+  .services{
+    margin-top:20px;
+    display:grid;grid-template-columns:repeat(3,1fr);gap:28px;
+  }
+  @media(max-width:940px){.hero{grid-template-columns:1fr;}.services{grid-template-columns:repeat(2,1fr);gap:20px;}}
+  @media(max-width:640px){.services{grid-template-columns:1fr;gap:16px}}
+
+  .card{
+    background:var(--card);
+    padding:24px;
+    border-radius:16px;
+    cursor:pointer;
+    position:relative;
+    overflow:hidden;
+    display:flex;
+    flex-direction:column;
+    justify-content:space-between;
+    transition:transform .28s cubic-bezier(.16,.8,.24,1), box-shadow .28s;
+    border:1px solid rgba(255,255,255,0.03);
+  }
+  .card:hover{
+    transform:translateY(-8px) scale(1.02);
+    box-shadow:0 20px 60px rgba(2,6,30,0.6);
+  }
+  .card .title{
+    font-weight:700;margin-bottom:8px;font-size:1.05rem
+  }
+  .card .desc{font-size:0.95rem;color:var(--muted);margin-bottom:14px;line-height:1.5}
+  .card .meta{display:flex;gap:8px;align-items:center;font-size:0.85rem;color:var(--muted)}
+  .card .btn-req{
+    position:absolute;right:14px;bottom:16px;
+    background:linear-gradient(90deg,var(--accent1),var(--accent2));
+    padding:10px 16px;border-radius:12px;font-weight:700;color:#041025;border:none;cursor:pointer;
+    box-shadow:0 8px 26px rgba(3,8,24,0.5);
+    transition:transform .2s;
+  }
+  .card .btn-req:hover{transform:translateY(-2px) scale(1.03)}
+
+  /* footer quick contact */
+  .quick-contact{display:flex;gap:14px;align-items:center;flex-wrap:wrap;margin-top:20px}
+  .chip{background:var(--glass);padding:8px 12px;border-radius:999px;font-weight:700;color:var(--text);border:1px solid rgba(255,255,255,0.03)}
+
+  /* modal */
+  .modal-backdrop{position:fixed;inset:0;background:rgba(2,6,23,0.6);display:flex;align-items:center;justify-content:center;z-index:60;opacity:0;pointer-events:none;transition:opacity .18s}
+  .modal-backdrop.show{opacity:1;pointer-events:auto}
+  .modal{
+    width:100%;max-width:720px;
+    background: rgba(6, 22, 51, 0.96);
+    border-radius:20px;padding:32px;box-shadow:0 25px 70px rgba(2,6,30,0.9);
+    transform:translateY(20px);transition:transform .18s;
+  }
+  .modal .row{display:flex;gap:12px}
+  .modal label{font-size:0.85rem;color:var(--muted)}
+  .modal input, .modal textarea, .modal select{
+    width:100%;padding:14px;border-radius:14px;border:1px solid rgba(255,255,255,0.08);
+    background: rgba(255,255,255,0.05);color:var(--text);font-size:0.95rem;resize:vertical;margin-top:6px;
+  }
+  .modal textarea{min-height:160px}
+  .modal .actions{display:flex;gap:12px;justify-content:flex-end;margin-top:16px;flex-wrap:wrap}
+  .modal .action-email,.modal .action-wa{padding:12px 18px;border-radius:14px;font-weight:800;font-size:0.95rem;transition:transform .2s}
+  .modal .action-email:hover,.modal .action-wa:hover{transform:translateY(-2px) scale(1.03)}
+
+  .small{font-size:0.82rem;color:var(--muted)}
+  .kicker{display:inline-block;background:rgba(255,255,255,0.03);padding:6px 10px;border-radius:999px;font-weight:700;font-size:0.78rem;color:var(--muted)}
+
+  /* footer */
+  footer{margin-top:28px;text-align:center;color:var(--muted);font-size:0.9rem;padding:12px 6px}
+
+  /* micro animations */
+  .float-icon{transform:translateY(0);animation:float 3.6s ease-in-out infinite}
+  @keyframes float{0%{transform:translateY(0)}50%{transform:translateY(-6px)}100%{transform:translateY(0)}}
+
+  /* form error */
+  .error{color:var(--danger);font-weight:700;font-size:0.85rem;margin-top:6px}
+
+  /* accessibility focus */
+  .card:focus-within{outline:2px solid rgba(99,102,241,0.16)}
+</style>
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <div class="brand">
+        <div class="logo">KD</div>
+        <div>
+          <h1>Kanda DevOps</h1>
+          <p>Student Tech Solutions — Hostel H, IT Department</p>
+        </div>
+      </div>
+
+      <div class="top-actions">
+        <a class="wa-btn" id="wa_top" href="https://wa.me/263778027237?text=Hi%20Kanda%20DevOps%20%F0%9F%91%8B%2C%20I%20want%20help" target="_blank" rel="noopener">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" style="display:block">
+            <path d="M21.7 2.3A11.8 11.8 0 0 0 12 0C5.4 0 .2 5.2.2 11.6c0 2.1.6 4.1 1.7 5.8L0 24l6.9-2.1c1.6 1 3.6 1.6 5.6 1.6 6.6 0 11.9-5.2 11.9-11.6 0-3.1-1.2-5.9-3.1-8z" fill="#fff" opacity=".06"/>
+            <path d="M20.2 3.8a10.1 10.1 0 1 0-14.3 14.4l-.9 3.2 3.3-.9A10.1 10.1 0 0 0 20.2 3.8z" fill="#fff" opacity=".12"/>
+            <path d="M17.2 13.1c-.3-.1-1.7-.9-2-.9-.3 0-.6 0-.9.3-.2.2-.8.9-.9 1.1-.2.2-.3.4-.6.2-.3-.1-1.1-.4-2.1-1.3-.8-.7-1.3-1.6-1.4-1.9-.2-.3 0-.5.1-.7.1-.1.2-.4.3-.6.1-.3 0-.6 0-.9 0-.3-.9-2.1-1.3-2.9-.3-.7-.7-1-1-.9-.2 0-.5 0-.8 0s-.8.1-1.2.6c-.4.5-1.5 1.5-1.5 3.7 0 2.2 1.5 4.3 1.7 4.6.3.4 3.1 4.7 7.6 6.1 4.4 1.4 4.4.9 5.2.9.8 0 2.6-1.1 3-2.1.3-.9.3-1.6.2-1.8-.1-.2-.4-.3-.8-.5z" fill="#071026"/>
+          </svg>
+          WhatsApp
+        </a>
+
+        <button class="secondary" id="modeToggle" aria-pressed="false">☀️ Light</button>
+      </div>
+    </header>
+
+    <div class="hero" role="region" aria-label="Intro">
+      <div>
+        <span class="kicker">Exam Season Special</span>
+        <h2>Fast, Affordable & Reliable — Right on Campus</h2>
+        <p>We fix laptops & phones, install OS, type & print assignments, and set up gaming nights. Same-day service where possible — perfect for exam emergencies.</p>
+        <div class="quick-contact">
+          <div class="chip">📞 0778027237</div>
+          <div class="chip">📍 Hostel H - IT Dept</div>
+          <div class="chip">Refer & get 10% off</div>
+        </div>
+      </div>
+
+      <div style="display:flex;flex-direction:column;gap:16px;align-items:flex-end">
+        <div style="width:100%;background:linear-gradient(135deg,var(--accent2),var(--accent1));padding:14px 18px;border-radius:14px;color:#041025;font-weight:800;text-align:center;">
+          OS Install + MS Office + Antivirus — <strong>$5</strong>
+        </div>
+        <div style="width:100%;background:var(--glass);padding:16px;border-radius:14px;text-align:center;">
+          <div style="font-weight:800">Book a Fix</div>
+          <div class="small" style="margin-top:10px;color:var(--muted)">Tap any service below to request help — send via WhatsApp or Email instantly.</div>
+        </div>
+      </div>
+    </div>
+
+    <section aria-labelledby="servicesTitle">
+      <h3 id="servicesTitle" style="margin:0 0 16px 0;">Our Services</h3>
+
+      <div class="services" id="servicesGrid"></div>
+
+      <div style="margin-top:28px;display:flex;gap:16px;flex-wrap:wrap">
+        <div class="card" style="flex:1">
+          <div class="title">Pricing (Student-friendly)</div>
+          <div class="desc small">Clear, honest pricing. Final price may vary by difficulty.</div>
+          <ul style="margin:8px 0 0 16px;color:var(--muted)">
+            <li>Laptop/PC repair - from $5</li>
+            <li>OS installation - $7</li>
+            <li>Typing & formatting - $2/page</li>
+            <li>Printing & scanning - $0.20/page</li>
+            <li>Game install/setup - from $3</li>
+          </ul>
+        </div>
+
+        <div class="card" style="flex:1">
+          <div class="title">Why Kanda DevOps?</div>
+          <div class="desc small">Cheaper than town shops, fast turnaround, trusted by campus students.</div>
+          <div style="margin-top:10px">
+            <button class="secondary" id="testimonialBtn">See testimonials</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <footer>
+      © 2025 Kanda DevOps • Hostel H, IT Department • WhatsApp: 0778027237
+    </footer>
+  </div>
+
+  <!-- Modal -->
+  <div id="modalBackdrop" class="modal-backdrop" role="dialog" aria-modal="true" aria-hidden="true">
+    <div class="modal" role="document" aria-labelledby="modalTitle">
+      <div style="display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:6px">
+        <div>
+          <div id="modalTitle" style="font-weight:800">Request Service</div>
+          <div class="small" id="modalServiceHint">Describe your issue</div>
+        </div>
+        <div><button id="closeModal" class="secondary">Close</button></div>
+      </div>
+
+      <form id="serviceForm" onsubmit="return false" novalidate>
+        <div style="display:grid;grid-template-columns:1fr 160px;gap:12px">
+          <div>
+            <label for="name">Your name</label>
+            <input id="name" placeholder="e.g., Tawanda" required>
+          </div>
+          <div>
+            <label for="phone">Phone/WhatsApp</label>
+            <input id="phone" placeholder="077*******" required>
+          </div>
+        </div>
+
+        <div style="margin-top:12px">
+          <label for="location">Location (optional)</label>
+          <input id="location" placeholder="e.g., Hostel H, Room 12">
+        </div>
+
+        <div style="margin-top:12px">
+          <label for="issue">What’s wrong? (be specific)</label>
+          <textarea id="issue" placeholder="Describe your problem..." required></textarea>
+        </div>
+
+        <div class="actions">
+          <button type="button" class="action-email" id="sendEmail">Send Email</button>
+          <button type="button" class="action-wa" id="sendWA">Send WhatsApp</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+<script>
+  const services = [
+    {title:'Laptop/PC Repair',desc:'We handle hardware & software issues for laptops & PCs',meta:'Same-day if possible'},
+    {title:'OS Installation',desc:'Windows/Linux/Mac OS installation & activation',meta:'Includes drivers & MS Office setup'},
+    {title:'Typing & Printing',desc:'Assignments, essays, formatting & printing',meta:'High-quality formatting'},
+    {title:'Game Setup',desc:'Install games, configure graphics & controllers',meta:'Multiplayer & LAN ready'},
+  ];
+
+  const grid = document.getElementById('servicesGrid');
+  services.forEach((s,i)=>{
+    const div=document.createElement('div');
+    div.className='card';
+    div.tabIndex=0;
+    div.innerHTML=`<div class="title">${s.title}</div>
+                   <div class="desc">${s.desc}</div>
+                   <div class="meta">${s.meta}</div>
+                   <button class="btn-req">Request</button>`;
+    grid.appendChild(div);
+  });
+
+  // Modal logic
+  const modalBackdrop=document.getElementById('modalBackdrop');
+  const closeModal=document.getElementById('closeModal');
+  const serviceForm=document.getElementById('serviceForm');
+  const modalServiceHint=document.getElementById('modalServiceHint');
+
+  document.querySelectorAll('.btn-req').forEach((btn,i)=>{
+    btn.addEventListener('click',()=>{
+      modalBackdrop.classList.add('show');
+      modalBackdrop.setAttribute('aria-hidden','false');
+      modalServiceHint.textContent = services[i].title;
+    });
+  });
+
+  closeModal.addEventListener('click',()=>{modalBackdrop.classList.remove('show');modalBackdrop.setAttribute('aria-hidden','true')});
+  modalBackdrop.addEventListener('click',(e)=>{if(e.target===modalBackdrop){modalBackdrop.classList.remove('show');modalBackdrop.setAttribute('aria-hidden','true')}});
+
+  // WhatsApp send
+  document.getElementById('sendWA').addEventListener('click',()=>{
+    const name=document.getElementById('name').value.trim();
+    const phone=document.getElementById('phone').value.trim();
+    const loc=document.getElementById('location').value.trim();
+    const issue=document.getElementById('issue').value.trim();
+    if(!name||!phone||!issue){alert('Please fill all required fields');return;}
+    const msg=`Hi Kanda DevOps, I need help for: ${modalServiceHint.textContent}. Name: ${name}, Phone: ${phone}, Location: ${loc||'N/A'}, Issue: ${issue}`;
+    window.open(`https://wa.me/263778027237?text=${encodeURIComponent(msg)}`,'_blank');
+  });
+
+  // Theme toggle
+  const modeToggle=document.getElementById('modeToggle');
+  modeToggle.addEventListener('click',()=>{
+    document.body.classList.toggle('light');
+    modeToggle.textContent=document.body.classList.contains('light')?'🌙 Dark':'☀️ Light';
+  });
+</script>
+</body>
+</html>
